@@ -24,9 +24,13 @@ const handleAddTask = () => {
     const taskContent = document.createElement('p')
     taskContent.innerText = inputElement.value;
 
+    taskContent.addEventListener('click', () => handleClick(taskContent))
+
     const deleteItem = document.createElement('i');
     deleteItem.classList.add('far');
     deleteItem.classList.add('fa-trash-alt');
+
+    deleteItem.addEventListener('click', () => handleDeleteClick(taskItemContainer, taskContent))
 
     taskItemContainer.appendChild(taskContent);
     taskItemContainer.appendChild(deleteItem);
@@ -36,6 +40,30 @@ const handleAddTask = () => {
     inputElement.value = '';
 
 };
+
+const handleClick = (taskContent) => {
+
+    const tasks = tasksContainer.childNodes; //vai pegar todos os filhos deste elemento
+
+    for (const task of tasks) {
+        const currentTaskIsBeingClicked = task.firstChild.isSameNode(taskContent)
+        if (currentTaskIsBeingClicked) {
+            task.firstChild.classList.toggle("completed");
+        }
+    }
+};
+
+const handleDeleteClick = (taskItemContainer, taskContent) => {
+
+    const tasks = tasksContainer.childNodes; //vai pegar todos os filhos deste elemento
+
+    for (const task of tasks) {
+        const currentTaskIsBeingClicked = task.firstChild.isSameNode(taskContent)
+        if (currentTaskIsBeingClicked) {
+            taskItemContainer.remove();
+        }
+    }
+}
 
 const handleInputChange = () => {
     const inputIsValid = validateInput();

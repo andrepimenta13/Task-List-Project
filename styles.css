@@ -80,7 +80,9 @@ body {
     color: #fff;
     padding: 12px;
     border-radius: 5px;
+    cursor: pointer;
 }
+
 
 /* Utilities  */
 
@@ -90,4 +92,8 @@ body {
 
 .error::placeholder {
     color: red;
+}
+
+.completed {
+    text-decoration: line-through;
 }
